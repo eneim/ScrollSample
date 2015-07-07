@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- color name from http://www.colorhexa.com -->
+    <color name="very_dark_grayish_blue">#455a64</color>
+    <color name="mostly_desaturated_dark_blue">#607d8b</color>
+    <color name="light_grayish_blue">#cfd8dc</color>
+    <color name="dark_gray">#9e9e9e</color>
+
+    <color name="very_dark_gray_mostly_black">#212121</color>
+    <color name="very_dark_gray">#727272</color>
+    <color name="gray">#b6b6b6</color>
+
+    <color name="colorPrimaryDark">#E64A19</color>
+    <color name="colorPrimary">#FF5722</color>
+    <color name="colorAccent">#607D8B</color>
+</resources>
