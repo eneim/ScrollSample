@@ -1,18 +1,16 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.sothree.slidinguppanel.SlidingUpPanelLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:sothree="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
+    android:id="@+id/sliding_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:layout="@layout/fragment_main">
+    android:gravity="bottom"
+    sothree:umanoPanelHeight="?attr/actionBarSize"
+    sothree:umanoShadowHeight="4dp">
 
-    <com.sothree.slidinguppanel.SlidingUpPanelLayout
-        android:id="@+id/sliding_layout"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="bottom"
-        sothree:umanoPanelHeight="?attr/actionBarSize"
-        sothree:umanoShadowHeight="4dp">
+        android:layout_height="match_parent">
 
         <fragment
             android:id="@+id/fragment"
@@ -21,31 +19,31 @@
             android:layout_height="match_parent"
             tools:layout="@layout/fragment_main" />
 
-        <LinearLayout
+        <include layout="@layout/toolbar" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="?attr/actionBarSize"
+            android:background="#3e3639"
+            android:gravity="center"
+            android:text="The Awesome Sliding Up Panel"
+            android:textColor="#f5f5f5"
+            android:textSize="16sp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="#3e3639"
-                android:gravity="center"
-                android:text="The Awesome Sliding Up Panel"
-                android:textColor="#f5f5f5"
-                android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="?attr/colorAccent"
-                android:padding="16dp"
-                android:text="@string/lipsum"
-                android:textColor="#f5f5f5"
-                android:textSize="16sp" />
-        </LinearLayout>
-    </com.sothree.slidinguppanel.SlidingUpPanelLayout>
-
-    <include layout="@layout/toolbar" />
-</FrameLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="?attr/colorAccent"
+            android:padding="16dp"
+            android:text="@string/lipsum"
+            android:textColor="#f5f5f5"
+            android:textSize="16sp" />
+    </LinearLayout>
+</com.sothree.slidinguppanel.SlidingUpPanelLayout>

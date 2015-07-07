@@ -5,14 +5,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
-import com.github.ksoichiro.android.observablescrollview.ScrollUtils;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
-public class MainActivity extends AppCompatActivity implements ObservableScrollViewCallbacks, SlidingUpPanelLayout.PanelSlideListener {
+public class MainActivity extends AppCompatActivity implements ObservableScrollViewCallbacks {
 
     /**
      * our custom Actionbar Toolbar
@@ -39,6 +37,10 @@ public class MainActivity extends AppCompatActivity implements ObservableScrollV
      * Bonus view: as you want to use with SlidingUpPanelLayout library
      */
     private SlidingUpPanelLayout mSlidingLayout;
+    /**
+     * keep track of toolbar alpha, assume that you want to change toolbar's alpha along with SlidingPanel's state too
+     */
+    private int mLastToolbarColorAlpha;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +63,13 @@ public class MainActivity extends AppCompatActivity implements ObservableScrollV
 
         // bonus: observe state of this SlidingPanel
         mSlidingLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
-        mSlidingLayout.setPanelSlideListener(this);
+        // Don't use this anymore
+        // mSlidingLayout.setPanelSlideListener(this);
     }
+
+    /**
+     * BONUS: change the toolbar's alpha on show/hide SlidingUpPanelLayout, remove it if you don't want
+     */
 
     @Override
     public void onScrollChanged(int scrollY, boolean firstScroll, boolean dragging) {
@@ -85,15 +92,6 @@ public class MainActivity extends AppCompatActivity implements ObservableScrollV
         }
     }
 
-    /**
-     * BONUS: change the toolbar's alpha on show/hide SlidingUpPanelLayout, remove it if you don't want
-     */
-
-    /**
-     * keep track of toolbar alpha, assume that you want to change toolbar's alpha along with SlidingPanel's state too
-     */
-    private int mLastToolbarColorAlpha;
-
     @Override
     public void onDownMotionEvent() {
 
@@ -104,35 +102,4 @@ public class MainActivity extends AppCompatActivity implements ObservableScrollV
 
     }
 
-    // where magic happens
-    @Override
-    public void onPanelSlide(View view, float offset) {
-        int newAlpha = (int) ScrollUtils.getFloat(offset * 255, mLastToolbarColorAlpha, 255);
-        mToolbarColorDrawable.setAlpha(newAlpha);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            mToolbar.setBackground(mToolbarColorDrawable);
-        } else {
-            mToolbar.setBackgroundDrawable(mToolbarColorDrawable);
-        }
-    }
-
-    @Override
-    public void onPanelCollapsed(View view) {
-
-    }
-
-    @Override
-    public void onPanelExpanded(View view) {
-
-    }
-
-    @Override
-    public void onPanelAnchored(View view) {
-
-    }
-
-    @Override
-    public void onPanelHidden(View view) {
-
-    }
 }
